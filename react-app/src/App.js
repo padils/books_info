@@ -1,27 +1,31 @@
 import React from 'react'
-import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom'
 import ListBookContainer from './page/listBookContainer';
-import store from './redux/redux-store';
 import { useBooksData } from './hooks/data.hook';
 import { BooksContext } from './context/booksContext';
 import { Route, useRoute } from './routes';
-import { Router } from 'react-router-dom';
+
+
 
 const App = () => {
-    const { addData, removeData, ready, books, success } = useBooksData()
-    const route =useRoute()
+    const { addData, removeData, ready, books, success,
+        getBook,deleteBook,createBook,updateBook } = useBooksData()
+    const route = useRoute()
 
     if (!ready) {
         return <div>Loading..</div>
     }
-    
+
     return <BooksContext.Provider value={{
-        addData, removeData, ready, books, success
+        addData, removeData, ready, books, success,
+        getBook,deleteBook,createBook,updateBook
     }}>
-  
-    <ListBookContainer/>
-        
-            </BooksContext.Provider>
+
+        <Router>
+            {route}
+        </Router>
+
+    </BooksContext.Provider>
 
 
 

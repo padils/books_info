@@ -80,18 +80,21 @@ createBook = async (req,res)=>{
             return res.status(400).json({success:false,error:err})
         }
 
-        book={...body}
+        book.name = body.name
+        book.time = body.time
+        book.rating = body.rating
+       
         book.save()
         .then(()=>{
             return res.status(200).json({
                 success: true,
-                id: movie._id,
-                message: 'Movie updated!',})
+                id: book._id,
+                message: 'book updated!',})
             })
             .catch(error => {
                 return res.status(404).json({
                     error,
-                    message: 'Movie not updated!',
+                    message: 'book not updated!',
                 })
             })
     })
