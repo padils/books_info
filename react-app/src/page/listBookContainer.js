@@ -18,9 +18,10 @@ const ListBookContainer = (props) => {
     }, [getBook])
 
     console.log(books)
-    if (!ready) {
+    if (!books) {
         return <div>
-            loading..
+            
+            <CreateBookInputs createBook={createBook} updateBook={updateBook}/>
        </div>
     }
     return <div>

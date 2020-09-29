@@ -25,20 +25,16 @@ let CreateBookInputs = (props) => {
             <input onChange={e=>editBookState({...bookState,rating:e.target.value})} value={bookState.rating} />
         </div>
 
-        <div>
-            <button onClick={()=>creatBook()}>
-                send
-            </button>
-        </div>
-        
-        <div>
-
-        </div>
-        <div>
-            <button>
-                cancel 
-            </button>
-        </div>
+    
+            <div >
+                <button onClick={()=>creatBook()} 
+                className="btn waves-effect waves-light">
+                <i className='material-icons right'>send</i> send</button>
+                
+            </div>
+            
+            
+           
     </div>
 }
 

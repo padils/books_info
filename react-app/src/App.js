@@ -1,10 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import ListBookContainer from './page/listBookContainer';
 import { useBooksData } from './hooks/data.hook';
 import { BooksContext } from './context/booksContext';
-import { Route, useRoute } from './routes';
-
+import {  useRoute } from './routes';
+import 'materialize-css'
 
 
 const App = () => {
@@ -22,7 +21,7 @@ const App = () => {
     }}>
 
         <Router>
-            {route}
+         <div className="container">   {route}</div>
         </Router>
 
     </BooksContext.Provider>

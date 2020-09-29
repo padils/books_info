@@ -26,23 +26,26 @@ const UpdateBook= (props) => {
             <input onChange={e=>editBookState({...bookState,rating:e.target.value})} value={bookState.rating} />
         </div>
 
-        <div>
-            <button onClick={()=>{
-                updateBook(bookState);
-                history.goBack()
+        <div className='row'>
+            <div className='col s6'>
+                <button className="btn waves-effect waves-light" onClick={()=>{
+                    updateBook(bookState);
+                    history.goBack()
+                
+                }}> 
+                <i className='material-icons right'>send</i> 
+                    send
+                </button>
+            </div>
             
-            }}>
-                send
-            </button>
-        </div>
-        
-        <div>
-
-        </div>
-        <div>
-            <button onClick={()=> history.goBack()}>
-                cancel 
-            </button>
+            <div className='col s6' style={{textAlign:'right'}}>
+                <button
+                 onClick={()=> history.goBack()} 
+                 className="btn waves-effect waves-light"
+                  style={{textAlign:'right'}}>
+                    cancel 
+                </button>
+            </div>
         </div>
     </div>
 }

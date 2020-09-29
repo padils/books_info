@@ -4,9 +4,9 @@ import Book from './Book'
 
 const ListBook=({books,deleteBook})=>{
 
-// alert(books)
+
     let list = books
-    ?.map(i=><Book 
+    ?.map(i=><div className='col' key={i._id} ><Book 
                 key={i._id} 
                 id={i._id}
                 name={i.name} 
@@ -14,8 +14,8 @@ const ListBook=({books,deleteBook})=>{
                 rating={i.rating}
                 deleteBook={deleteBook}
                 
-                />)
-    return <div>
+                /></div>)
+    return <div className='row'>
         {list}
     </div>
 }
