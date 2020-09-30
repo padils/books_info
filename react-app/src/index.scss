@@ -1,0 +1,25 @@
+@import "~materialize-css/sass/materialize.scss";
+
+$allColor:#B32D45;
+.allColor{
+  background-color: $allColor;
+}
+
+button{
+  @extend .btn;
+ line-height: inherit;
+  margin: 5px;
+  background-color: $allColor;
+  
+}
+.navBar{
+  margin: 5px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+a{
+  color: #fff;
+  padding: 0 15px;
+  cursor: pointer;
+}

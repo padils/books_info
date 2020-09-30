@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { BooksContext } from '../context/booksContext'
+import { useHistory } from 'react-router-dom';
 
 
 let CreateBookInputs = (props) => {
 
     let [bookState,editBookState]=useState({name:'',sheet:'',rating:''})
 
-    let creatBook=()=>{
-        props.createBook(bookState);
-
-    }
+    let {createBook}=useContext(BooksContext)
+    let history=useHistory()
 
     return <div>
-
+            <h1> Create book</h1>
         <div>
             <span>name:</span>
             <input onChange={e=>editBookState({...bookState,name:e.target.value})} value={bookState.name}/>
@@ -27,9 +27,12 @@ let CreateBookInputs = (props) => {
 
     
             <div >
-                <button onClick={()=>creatBook()} 
-                className="btn waves-effect waves-light">
-                <i className='material-icons right'>send</i> send</button>
+                <button onClick={()=>{
+                createBook(bookState)
+                history.goBack()}
+                }  >
+                <i className='material-icons right postfix'>send</i> 
+                 send</button>
                 
             </div>
             

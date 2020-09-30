@@ -6,6 +6,7 @@ const storageName = 'BooksData';
 
 export const useBooksData = ()=>{
     let [books,setBooks]=useState(null);
+    let [filterWorld,setFilter]=useState('');
     let [success,setSuccess]=useState(null);
     const [ready, setReady] = useState(false)
 
@@ -30,6 +31,9 @@ export const useBooksData = ()=>{
         localStorage.removeItem(storageName)
     },[])
 
+    const addFilter=(filterWorld)=>{
+        setFilter(filterWorld);
+    }
 
     const getBook = useCallback(async () => {
         try {
@@ -79,6 +83,6 @@ export const useBooksData = ()=>{
         setReady(true);
     },[addData])
 
-    return {addData,removeData,ready,books,success,
+    return {addData,removeData,ready,books,success,filterWorld,addFilter,
         getBook,deleteBook,createBook,updateBook}
 }

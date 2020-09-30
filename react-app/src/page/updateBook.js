@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { BooksContext } from '../context/booksContext'
 
 
-const UpdateBook= (props) => {
+const UpdateBook= () => {
 
     let {books,updateBook} = useContext(BooksContext);
     let {id}=useParams()
@@ -13,6 +13,7 @@ const UpdateBook= (props) => {
     
 
     return <div>
+    <h1> Update book</h1>
         <div>
             <span>name:</span>
             <input onChange={e=>editBookState({...bookState,name:e.target.value})} value={bookState.name}/>
@@ -28,12 +29,11 @@ const UpdateBook= (props) => {
 
         <div className='row'>
             <div className='col s6'>
-                <button className="btn waves-effect waves-light" onClick={()=>{
+                <button  onClick={()=>{
                     updateBook(bookState);
-                    history.goBack()
-                
+                    history.goBack();
                 }}> 
-                <i className='material-icons right'>send</i> 
+                <i className='material-icons right postfix'>send</i> 
                     send
                 </button>
             </div>
@@ -41,7 +41,6 @@ const UpdateBook= (props) => {
             <div className='col s6' style={{textAlign:'right'}}>
                 <button
                  onClick={()=> history.goBack()} 
-                 className="btn waves-effect waves-light"
                   style={{textAlign:'right'}}>
                     cancel 
                 </button>

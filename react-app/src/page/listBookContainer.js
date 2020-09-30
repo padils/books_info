@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useCallback, useState } from 'react';
 import CreateBookInputs from './createBook';
 import ListBook from './listBook';
 import { BooksContext } from '../context/booksContext';
-
-
-
+import Search from '../components/search';
 
 
 const ListBookContainer = (props) => {
 
-    const {getBook,deleteBook,createBook,updateBook,books,ready} = useContext(BooksContext)
+    const {getBook,deleteBook,books,filterWorld} = useContext(BooksContext)
     
 
     useEffect(() => {
@@ -20,13 +18,15 @@ const ListBookContainer = (props) => {
     console.log(books)
     if (!books) {
         return <div>
-            
-            <CreateBookInputs createBook={createBook} updateBook={updateBook}/>
+            No Books
        </div>
     }
+    let booksReverse=books.reverse()
+    let filterBooks=booksReverse.filter(item=>(~item.name.indexOf(filterWorld)))
+
     return <div>
-        <ListBook books={books} deleteBook={deleteBook} />
-        <CreateBookInputs createBook={createBook} updateBook={updateBook}/>
+  
+        <ListBook books={filterBooks} deleteBook={deleteBook} /> 
 
     </div>
 
