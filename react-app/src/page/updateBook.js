@@ -33,7 +33,7 @@ const UpdateBook= () => {
                     updateBook(bookState);
                     history.goBack();
                 }}> 
-                <i className='material-icons right postfix'>send</i> 
+                
                     send
                 </button>
             </div>

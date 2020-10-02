@@ -4,28 +4,24 @@ import { useBooksData } from './hooks/data.hook';
 import { BooksContext } from './context/booksContext';
 import {  useRoute } from './routes';
 import Navbar from './components/navBar';
+import Footer from './components/footer';
 
 
 
 const App = () => {
-    const { addData, removeData, ready, books, success,filterWorld,addFilter,
-        getBook,deleteBook,createBook,updateBook } = useBooksData()
+    const store = useBooksData()
     const route = useRoute()
         
-    if (!ready) {
+    if (!store.ready) {
         return <div>Loading..</div>
     }
 
-    return <BooksContext.Provider value={{
-        addData, removeData, ready,books,filterWorld, success,addFilter,
-        getBook,deleteBook,createBook,updateBook
-    }}>
-
+    return <BooksContext.Provider value={store}>
         <Router>
-       <div>
-            <Navbar/>
-             <div className="container">   {route}</div>
-            
+       <div className='container ' >
+            <div className='row'><Navbar/></div>
+             <div className="row"> {route}</div>
+            <div className='row'><Footer/></div>
        </div>
 </Router>
     </BooksContext.Provider>

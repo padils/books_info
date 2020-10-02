@@ -11,5 +11,6 @@ export const BooksContext = createContext({
     deleteBook:noop,
     createBook:noop,
     updateBook:noop,
-    filterWorld:''
+    addFilter:noop,
+    filterWord:''
 })

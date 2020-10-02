@@ -1,31 +1,29 @@
-import React, { useContext, useEffect, useCallback, useState } from 'react';
-import CreateBookInputs from './createBook';
+import React, { useContext, useEffect } from 'react';
 import ListBook from './listBook';
 import { BooksContext } from '../context/booksContext';
-import Search from '../components/search';
+
 
 
 const ListBookContainer = (props) => {
 
-    const {getBook,deleteBook,books,filterWorld} = useContext(BooksContext)
+    const {getBook,deleteBook,books,filterWord} = useContext(BooksContext)
     
 
     useEffect(() => {
-
         getBook()
     }, [getBook])
 
-    console.log(books)
+    let filterBooks=books.filter(item=>(~item.name.indexOf(filterWord)))
+
+
+    
     if (!books) {
         return <div>
             No Books
        </div>
     }
-    let booksReverse=books.reverse()
-    let filterBooks=booksReverse.filter(item=>(~item.name.indexOf(filterWorld)))
 
-    return <div>
-  
+    return <div >
         <ListBook books={filterBooks} deleteBook={deleteBook} /> 
 
     </div>

@@ -6,7 +6,7 @@ const storageName = 'BooksData';
 
 export const useBooksData = ()=>{
     let [books,setBooks]=useState(null);
-    let [filterWorld,setFilter]=useState('');
+    let [filterWord,setFilter]=useState('');
     let [success,setSuccess]=useState(null);
     const [ready, setReady] = useState(false)
 
@@ -16,9 +16,9 @@ export const useBooksData = ()=>{
 
     const addData = useCallback((books,success)=>{
 
-        setBooks(books);
+        setBooks(books.reverse());
         setSuccess(success)
-        console.log('addData')
+        
         localStorage.setItem(storageName,JSON.stringify({
             books,success
         }))
@@ -39,39 +39,37 @@ export const useBooksData = ()=>{
         try {
 
             let data = await request(`${url}books`, 'GET', null, {})
-            
             addData(data.data,data.success)
             
-            console.log('getBook')
             
         }
         catch (e) { }
     }, []) 
     const deleteBook = useCallback(async(id)=>{
         try{
-          let data= await request(`${url}book/${id}`, 'DELETE', null, {})
+           await request(`${url}book/${id}`, 'DELETE', null, {})
           getBook()
-          console.log('delete')
+          
         }
         catch(e){}
-    })
+    },[])
     const createBook = useCallback(async(data)=>{
         try{
              await request(`${url}book`, 'POST', data, {})
             getBook()
-            console.log('create')
+            
         }
         catch(e){}
-    })
+    },[])
     const updateBook = useCallback(async(data)=>{
         try{
               await request(`${url}book/${data._id}`, 'PUT', data, {})
               getBook()
-              console.log('create')
+              
             
         }
         catch(e){}
-    })
+    },[])
    
     useEffect(()=>{
         setReady(false)
@@ -83,6 +81,6 @@ export const useBooksData = ()=>{
         setReady(true);
     },[addData])
 
-    return {addData,removeData,ready,books,success,filterWorld,addFilter,
+    return {addData,removeData,ready,books,success,filterWord,addFilter,
         getBook,deleteBook,createBook,updateBook}
 }

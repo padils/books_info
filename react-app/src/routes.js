@@ -2,8 +2,8 @@ import React from 'react'
 import { Switch,Route,Redirect } from "react-router-dom"
 import CreateBookInputs from './page/createBook'
 import ListBookContainer from "./page/listBookContainer"
-import { TestContext } from "./page/testContext"
 import UpdateBook from './page/updateBook'
+import No404 from './components/404';
 
 
 export const useRoute =()=>{
@@ -19,7 +19,10 @@ export const useRoute =()=>{
         <Route path='/update/:id' exact>
             <UpdateBook/>
         </Route>
-        <Redirect to="/" />
+        <Route path='/404' exact>
+            <No404/>
+        </Route>
+        <Redirect to="/404" />
     </Switch>
     )
 }

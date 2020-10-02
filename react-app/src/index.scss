@@ -1,20 +1,26 @@
-@import "~materialize-css/sass/materialize.scss";
+ @import "~bootstrap/scss/bootstrap.scss";
+
+
 
 $allColor:#B32D45;
 .allColor{
   background-color: $allColor;
+  color: $allColor;
+}
+input{
+  @extend .form-control;
 }
 
 button{
-  @extend .btn;
+@extend .btn, .btn-info;
  line-height: inherit;
   margin: 5px;
-  background-color: $allColor;
+ 
   
 }
 .navBar{
-  margin: 5px;
-  margin-bottom: 30px;
+  
+  
   width: 100%;
 }
 

@@ -15,8 +15,8 @@ const ListBook=({books,deleteBook})=>{
                 deleteBook={deleteBook}
                 
                 /></div>)
-    return <div className='row'>
-        {list}
+    return <div className='container'>
+       <div className='row'> {list}</div>
     </div>
 }
 export default ListBook
