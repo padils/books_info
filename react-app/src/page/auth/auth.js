@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react'
-import { BooksContext } from '../../context/booksContext';
+import React, {  useState} from 'react'
+import { register } from '../../redux/authThunk';
+import { login } from './../../redux/authThunk';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 
 
-const Auth =()=>{
+const Auth =({login,register})=>{
 
-    let {register,login}=useContext(BooksContext)
+   
     let [form,setForm]=useState({email:'',password:''})
     
-
     return <div>
         <div>
            <span>email:</span> <input 
@@ -33,9 +35,12 @@ const Auth =()=>{
                 <button
                 onClick={()=>login(form)}>sign in</button>
             </div>
+            
         </div>
     </div>
 }
 
 
-export default Auth
+
+
+export default  compose(connect('',{login,register})(Auth))

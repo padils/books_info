@@ -1,28 +1,28 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ListBook from './listBook';
-import { BooksContext } from '../../context/booksContext';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { deleteBook, getBook } from '../../redux/bookThunk';
 
 
 
-const ListBookContainer = (props) => {
+const ListBookContainer = ({getBook,deleteBook,books,filterWord}) => {
 
-    const {getBook,deleteBook,books,filterWord} = useContext(BooksContext)
+    
     
 
     useEffect(() => {
         getBook()
-       
     }, [getBook])
 
-    let filterBooks=books?.filter(item=>(~item.name.indexOf(filterWord)))
-
-
     
+
     if (!books) {
         return <div>
             No Books
        </div>
     }
+    let filterBooks=books.reverse().filter(item=>(~item.name.indexOf(filterWord)))
 
     return <div >
         <ListBook books={filterBooks} deleteBook={deleteBook} /> 
@@ -31,6 +31,15 @@ const ListBookContainer = (props) => {
 
 }
 
+let mapStateToProps=(state)=>{
+    return {
+        books:state.books.books,
+        filterWord:state.books.filterWord
+    }
+}
 
-export default ListBookContainer
+
+export default  compose(connect(mapStateToProps,{getBook,deleteBook})(ListBookContainer))
+
+
 

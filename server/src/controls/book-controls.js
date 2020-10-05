@@ -3,7 +3,7 @@ const Book = require('../models/book-model');
 
 createBook = async (req,res)=>{
 
-    const body = req.body;
+    const body = req.body.data;
 
     if (!body){
         return res.status(400).json({
@@ -71,7 +71,7 @@ createBook = async (req,res)=>{
 
  updateBook=async (req,res) =>{
 
-    const body = req.body;
+    const body = req.body.data;
 
     if(!body){
         return res.status(400).json({success:false,error:'not Data'})

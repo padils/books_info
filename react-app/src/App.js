@@ -1,36 +1,42 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { useBooksData } from './hooks/data.hook';
-import { BooksContext } from './context/booksContext';
 import {  useRoute } from './routes';
 import Navbar from './components/navBar';
 import Footer from './components/footer';
-import { useAuth } from './hooks/auth.hook';
+import {Provider,connect} from 'react-redux'
+import {compose} from 'redux'
+import  store  from './redux/redux-store';
 
 
 
-const App = () => {
-    const storeData = useBooksData()
-    const storeUser=useAuth()
-    const route = useRoute(storeUser.isAuth)
+const App = (props) => {
+
+    const route = useRoute(props.isAuth)
         
-    if (!storeData.ready) {
-        return <div>Loading..</div>
-    }
-
-
-    return <div className=''>
-        
-        <BooksContext.Provider value={{...storeData,...storeUser}}>
-            <Router>
-           <div className='container' >
-                {storeUser.isAuth && <div className='row'><Navbar/></div>}
-                 <div className="row"> {route}</div>
-                <div className='row'><Footer/></div>
-           </div>
-    </Router>
-        </BooksContext.Provider>
+    return <div className=''>                
+             <Router>
+                   <div className='container' >
+                        {props.isAuth && <div className='row'><Navbar/></div>}
+                         <div className="row"> {route}</div>
+                        <div className='row'><Footer/></div>
+                   </div>
+             </Router>
+       
     </div>
 }
 
-export default App
+    let mapStateToProps=(state)=>{
+        return {
+            isAuth:state.auth.isAuth
+        }
+    }
+
+    let AppContainer = compose(connect(mapStateToProps,{})(App))
+
+    const PadApp=(props)=>{
+
+        return <Provider store={store}>
+            <AppContainer/>
+       </Provider>
+    }
+export default PadApp

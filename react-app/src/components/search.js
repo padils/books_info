@@ -1,13 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
-
-import { BooksContext } from '../context/booksContext';
 import { SearchIcon } from '../icons/search';
+import { setFilter as addFilter } from '../redux/bookReducer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 
-const Search =()=>{
+const Search =({addFilter,filterWord})=>{
 
-    let {addFilter,filterWord}=useContext(BooksContext)
+
     let location = useLocation()
     let [value,editValue]=useState(filterWord)
     
@@ -36,5 +37,13 @@ const Search =()=>{
 }
 
 
+let mapStateToProps=(state)=>{
+  return {
+      
+      filterWord:state.books.filterWord
+  }
+}
 
-export default Search
+
+export default  compose(connect(mapStateToProps,{addFilter})(Search))
+

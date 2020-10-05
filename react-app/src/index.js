@@ -1,12 +1,12 @@
 import * as serviceWorker from './serviceWorker';
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import PadApp from "./App";
 import './index.scss'
 
 
 
-ReactDOM.render(<App  />, document.getElementById("root"));
+ReactDOM.render(<PadApp  />, document.getElementById("root"));
 
 
 

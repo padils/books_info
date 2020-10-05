@@ -1,13 +1,16 @@
-import React, { useContext, useState,useEffect } from 'react'
-import { BooksContext } from '../../context/booksContext'
+import React, {  useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createBook } from '../../redux/bookThunk';
 
 
-let CreateBookInputs = (props) => {
+let CreateBookInputs = ({createBook}) => {
 
     let [bookState,editBookState]=useState({name:'',sheet:'',rating:''})
 
-    let {createBook,addFilter}=useContext(BooksContext)
+   
+    
     let history=useHistory()
 
    
@@ -42,4 +45,6 @@ let CreateBookInputs = (props) => {
     </div>
 }
 
-export default CreateBookInputs
+
+
+export default  compose(connect('',{createBook})(CreateBookInputs))

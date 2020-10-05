@@ -2,9 +2,9 @@ import React  from 'react'
 import { useHistory } from 'react-router-dom'
 
 
-const Book=(props)=>{
+const Book=({name,rating,sheet,id,deleteBook})=>{
     const history = useHistory()
-let {name,rating,sheet,id}=props
+
    
 
     return <div >
@@ -18,7 +18,7 @@ let {name,rating,sheet,id}=props
             <span>rating:{rating}</span>
        </div>
        <div>
-           <button  onClick={()=>{props.deleteBook(props.id)}}> delete</button>
+           <button  onClick={()=>{deleteBook(id)}}> delete</button>
        </div>
        <div>
            <button onClick={()=>{history.push(`/update/${id}`)}}> update</button>

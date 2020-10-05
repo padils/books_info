@@ -5,18 +5,19 @@ const User = require('../models/user-model')
 
  const login = async(req,res)=>{
 
-  const body=req.body
+  const body=req.body.data
    try{ 
     
     if(!body){
         return res.status(400).json({success:false,error:'not Data'})
     }
+    
 
    
 
     const user= await User.findOne({email:body.email})
     if (!user) {
-        return res.status(400).json({ message: 'Пользователь не найден' })
+        return res.status(400).json({ message: 'Пользователь не найден эхх' })
       }
 
     if(user.password !== body.password){
@@ -31,7 +32,7 @@ res.status(400).json({message:'error'})
 }
  const isAuth = async(req,res)=>{
 
-  const body=req.body
+  const body=req.body.data
   const {id}=body
    try{ 
     
@@ -40,7 +41,7 @@ res.status(400).json({message:'error'})
     }
     const user= await User.findOne({_id:id})
     if (!user) {
-        return res.status(200).json({ message: 'Пользователь не найден',isAuth:false })
+        return res.status(200).json({ message: 'Пользователь не найден ',isAuth:false })
       }
   return  res.status(200).json({userId:user._id,message:'ok',isAuth:true})}
 catch(e){
@@ -50,7 +51,7 @@ res.status(400).json({message:'error'})
 }
  const logout = async(req,res)=>{
 
-  const body=req.body
+  const body=req.body.data
    try{ 
     
     if(!body){
@@ -61,7 +62,7 @@ res.status(400).json({message:'error'})
     user.login=false
   return  res.status(200).json({message:'logout',isAuth:user.login})}
 catch(e){
-res.status(400).json({message:'error'})
+res.status(400).json({message:'errors'})
 }
 
 }
@@ -72,13 +73,13 @@ res.status(400).json({message:'error'})
  const register = async(req,res)=>{
      try{
 
-        const {email, password} = req.body
+        const {email, password} = req.body.data
         const candidate = await User.findOne({email})
         if(candidate){
            return res.status(400).json({message:'Такой пользователь уже существует'})
         }
 
-        const user = new User(req.body)
+        const user = new User(req.body.data)
         user.login=true
 
         await user.save()

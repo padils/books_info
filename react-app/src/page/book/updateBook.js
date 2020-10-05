@@ -1,11 +1,12 @@
-import React, { useState,useContext } from 'react'
+import React, { useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom';
-import { BooksContext } from '../../context/booksContext'
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { updateBook } from '../../redux/bookThunk';
 
+const UpdateBook= ({books,updateBook}) => {
 
-const UpdateBook= () => {
-
-    let {books,updateBook} = useContext(BooksContext);
+    
     let {id}=useParams()
     let history=useHistory()
 
@@ -49,4 +50,12 @@ const UpdateBook= () => {
     </div>
 }
 
-export default UpdateBook
+let mapStateToProps=(state)=>{
+    return {
+        books:state.books.books
+    }
+}
+
+
+export default  compose(connect(mapStateToProps,{updateBook})(UpdateBook))
+

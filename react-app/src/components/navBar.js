@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { BooksContext } from '../context/booksContext';
 import Search from './search';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { logout } from '../redux/authThunk';
 
 
-const Navbar =()=>{
+const Navbar =({logout,userId})=>{
     let history=useHistory()
-    let {logout,userId}=useContext(BooksContext)
+
 
     return <nav className='navbar navbar-expand-lg navbar-light bg-light navBar '>
     
@@ -38,6 +40,13 @@ const Navbar =()=>{
         
 }
 
+let mapStateToProps=(state)=>{
+     return {
+         
+         userId:state.auth.userId
+     }
+   }
+   
+   
+   export default  compose(connect(mapStateToProps,{logout})(Navbar))
 
-
-export default Navbar
