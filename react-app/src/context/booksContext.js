@@ -5,6 +5,8 @@ function noop() {}
 export const BooksContext = createContext({
     books:[],
     success:true,
+    userId:'',
+    isAuth:false,
     addData:noop,
     removeData:noop,
     getBook:noop,
@@ -12,5 +14,9 @@ export const BooksContext = createContext({
     createBook:noop,
     updateBook:noop,
     addFilter:noop,
+    login:noop,
+    logout:noop,
+    register:noop,
+   
     filterWord:''
 })

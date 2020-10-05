@@ -3,10 +3,11 @@ const bodyParser = require("body-parser")
 const cors = require("cors");
 
 const bookRouters = require('./src/routers/book-router')
+const authRouters = require('./src/routers/auth-router')
 const db = require("./src/db")
 
 
-const app = express(); // create express app
+const app = express(); 
 const apiPort=3000;
 
 app.use(express.json({ extended: true }))
@@ -23,5 +24,6 @@ app.get('/',(req,res)=>{
 res.send('Hello world')})
 
 app.use('/api',bookRouters)
+app.use('/api',authRouters)
 
 app.listen(apiPort, () => console.log("server started on port 3000"));

@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useEffect } from 'react';
 import { useHttp } from './http.hook';
 
@@ -16,14 +15,17 @@ export const useBooksData = ()=>{
 
     const addData = useCallback((books,success)=>{
 
-        setBooks(books.reverse());
-        setSuccess(success)
+      
+    setBooks(books?.reverse())
+    setSuccess(success)
+        
         
         localStorage.setItem(storageName,JSON.stringify({
             books,success
         }))
         
     },[])
+
 
     const removeData = useCallback(()=>{
         setBooks(null)
@@ -70,10 +72,16 @@ export const useBooksData = ()=>{
         }
         catch(e){}
     },[])
+
+
+
+
    
     useEffect(()=>{
         setReady(false)
+        
         const data = JSON.parse(localStorage.getItem(storageName))
+        
         if(data){
             addData(data.books,data.success)
         }

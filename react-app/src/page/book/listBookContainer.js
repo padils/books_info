@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import ListBook from './listBook';
-import { BooksContext } from '../context/booksContext';
+import { BooksContext } from '../../context/booksContext';
 
 
 
@@ -11,9 +11,10 @@ const ListBookContainer = (props) => {
 
     useEffect(() => {
         getBook()
+       
     }, [getBook])
 
-    let filterBooks=books.filter(item=>(~item.name.indexOf(filterWord)))
+    let filterBooks=books?.filter(item=>(~item.name.indexOf(filterWord)))
 
 
     
