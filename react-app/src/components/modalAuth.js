@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { login } from "../redux/authThunk";
-import { register } from "../serviceWorker";
+import { login ,register} from "../redux/authThunk";
 
 const Modal = ({ login, register }) => {
   let [form, setForm] = useState({ email: "", password: "" });
