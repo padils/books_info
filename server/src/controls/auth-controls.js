@@ -12,9 +12,6 @@ const User = require('../models/user-model')
         return res.status(400).json({success:false,error:'not Data'})
     }
     
-
-   
-
     const user= await User.findOne({email:body.email})
     if (!user) {
         return res.status(400).json({ message: 'Пользователь не найден эхх' })
@@ -37,11 +34,11 @@ res.status(400).json({message:'error'})
    try{ 
     
     if(!id){
-        return res.status(200).json({success:false,error:'not Data'})
+        return res.status(400).json({success:false,error:'not Data'})
     }
     const user= await User.findOne({_id:id})
     if (!user) {
-        return res.status(200).json({ message: 'Пользователь не найден ',isAuth:false })
+        return res.status(400).json({ message: 'Пользователь не найден ',isAuth:false })
       }
   return  res.status(200).json({userId:user._id,message:'ok',isAuth:true})}
 catch(e){

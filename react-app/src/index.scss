@@ -12,14 +12,13 @@ input{
 }
 
 button{
-@extend .btn, .btn-info;
- line-height: inherit;
-  margin: 5px;
- 
-  
+@extend .btn, .btn-outline-secondary,.m-1;
+
 }
-.navBar{
-  width: 100%;
+
+textarea{
+  @extend input;
+  height: 150px;
 }
 
 a{

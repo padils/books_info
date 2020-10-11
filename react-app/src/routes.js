@@ -4,7 +4,6 @@ import CreateBookInputs from './page/book/createBook'
 import ListBookContainer from "./page/book/listBookContainer"
 import UpdateBook from './page/book/updateBook'
 import No404 from './components/404';
-import Auth from './page/auth/auth'
 
 
 export const useRoute =(isAuth)=>{
@@ -15,9 +14,6 @@ export const useRoute =(isAuth)=>{
             <Route path='/' exact>
                 <ListBookContainer/>
             </Route>
-            {/* <Route path='/auth' exact>
-            <Auth/>
-            </Route> */}
             <Route path='/create' exact>
                 <CreateBookInputs/>
             </Route>
@@ -33,7 +29,7 @@ export const useRoute =(isAuth)=>{
 }
 return(<Switch>
     <Route path='/' exact>
-            <Auth/>
+            <div> авторизация</div>
             </Route>
       <Redirect to="/" />
 </Switch>
