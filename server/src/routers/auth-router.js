@@ -1,14 +1,12 @@
-const express = require('express');
+const express = require('express')
 
-const AuthControls= require('../controls/auth-controls')
+const AuthControls = require('../controls/auth-controls')
 
-const router = express.Router();
+const router = express.Router()
 
+router.post('/login', AuthControls.login)
+router.post('/logout', AuthControls.logout)
+router.post('/register', AuthControls.register)
+router.post('/isAuth', AuthControls.isAuth)
 
-
-router.post('/login',AuthControls.login)
-router.post('/logout',AuthControls.logout)
-router.post('/register',AuthControls.register)
-router.post('/isAuth',AuthControls.isAuth)
-
-module.exports =router
+module.exports = router
