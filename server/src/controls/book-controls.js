@@ -13,8 +13,8 @@ createBook = async (req, res) => {
 
   const book = new Book(body)
 
-  if (!book) {
-    return res.status(400).json({success: false, error: err})
+  if (!book.name) {
+    return res.status(400).json({success: false, message: ' название'})
   }
 
   book
@@ -28,7 +28,7 @@ createBook = async (req, res) => {
       })
     })
     .catch((error) => {
-      return req.status(400).json({
+      return res.status(400).json({
         success: false,
         error,
         message: 'Book not created!',
@@ -68,7 +68,7 @@ deleteBook = async (req, res) => {
 }
 
 updateBook = async (req, res) => {
-  const body = req.body.data
+  const body = req.body
 
   if (!body) {
     return res.status(400).json({success: false, error: 'not Data'})

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
-import {login, register} from '../redux/authThunk'
+import {login, register} from '../redux/thunk/authThunk'
 
 const Modal = ({login, register}) => {
   let [form, setForm] = useState({email: '', password: ''})

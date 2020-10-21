@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import {updateBook} from '../../redux/bookThunk'
+import {updateBook} from '../../redux/thunk/bookThunk'
 
 const UpdateBook = ({books, updateBook}) => {
   let {id} = useParams()

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import ListBook from './listBook'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import {deleteBook, getBook} from '../../redux/bookThunk'
+import {deleteBook, getBook} from '../../redux/thunk/bookThunk'
 
 const ListBookContainer = ({getBook, deleteBook, books, filterWord}) => {
   useEffect(() => {

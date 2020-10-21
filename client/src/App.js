@@ -5,7 +5,7 @@ import Navbar from './components/navBar'
 import {Provider, connect} from 'react-redux'
 import {compose} from 'redux'
 import store from './redux/redux-store'
-import {isAuthUser} from './redux/authThunk'
+import {isAuthUser} from './redux/thunk/authThunk'
 
 const App = ({isAuthUser, isAuth, userId}) => {
   const route = useRoute(isAuth)
@@ -36,7 +36,7 @@ let mapStateToProps = (state) => {
 
 let AppContainer = compose(connect(mapStateToProps, {isAuthUser})(App))
 
-const PadApp = ({isAuthUser, userId}) => {
+const PadApp = () => {
   return (
     <Provider store={store}>
       <AppContainer />

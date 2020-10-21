@@ -1,7 +1,7 @@
 const User = require('../models/user-model')
 
 const login = async (req, res) => {
-  const body = req.body.data
+  const body = req.body
   try {
     if (!body) {
       return res.status(400).json({success: false, error: 'not Data'})
@@ -42,7 +42,7 @@ const isAuth = async (req, res) => {
   }
 }
 const logout = async (req, res) => {
-  const body = req.body.data
+  const body = req.body
   try {
     if (!body) {
       return res.status(400).json({success: false, error: 'not Data'})
@@ -58,7 +58,7 @@ const logout = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    const {email, password} = req.body.data
+    const {email, password} = req.body
     const candidate = await User.findOne({email})
     if (candidate) {
       return res
@@ -66,7 +66,7 @@ const register = async (req, res) => {
         .json({message: 'Такой пользователь уже существует'})
     }
 
-    const user = new User(req.body.data)
+    const user = new User(req.body)
     user.login = true
 
     await user.save()

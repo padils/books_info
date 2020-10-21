@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import Search from './search'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import {logout} from '../redux/authThunk'
+import {logout} from '../redux/thunk/authThunk'
 import Modal from './modalAuth'
 
 const Navbar = ({logout, userId}) => {

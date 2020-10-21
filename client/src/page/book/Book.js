@@ -1,5 +1,6 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
+import NoPhoto from '../../components/noPhoto'
 
 const Book = ({src, name, rating, sheet, id, deleteBook}) => {
   const history = useHistory()
@@ -27,7 +28,7 @@ const Book = ({src, name, rating, sheet, id, deleteBook}) => {
         </div>
       </div>
       <div className="col-6">
-        <img src={src} className="img-thumbnail" />
+        <img src={src || NoPhoto()} className="img-thumbnail" />
       </div>
       <div>
         <div className="d-flex ">

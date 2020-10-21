@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import {createBook} from '../../redux/bookThunk'
+import {createBook} from '../../redux/thunk/bookThunk'
+import {login} from './../../redux/thunk/authThunk'
 
 let CreateBookInputs = ({createBook}) => {
   let [bookState, editBookState] = useState({
