@@ -2,7 +2,7 @@ import React from 'react'
 import Book from './Book'
 
 const ListBook = ({books, deleteBook}) => {
-  let list = books?.map((i) => (
+  let list = books.map((i) => (
     <div className="border rounded-lg my-2 mx-1 p-3" key={i._id}>
       <Book
         key={i._id}

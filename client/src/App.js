@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {BrowserRouter as Router} from 'react-router-dom'
 import {useRoute} from './routes'
 import Navbar from './components/navBar'
@@ -17,12 +17,9 @@ const App = ({isAuthUser, isAuth, userId, toast}) => {
   return (
     <>
       <Router>
-        <>
-          <Navbar />
-          {toast && <ToastMessage />}
-
-          <div>{route}</div>
-        </>
+        <Navbar />
+        {toast && <ToastMessage />}
+        <div>{route}</div>
       </Router>
     </>
   )
@@ -36,7 +33,7 @@ let mapStateToProps = (state) => {
   }
 }
 
-let AppContainer = compose(connect(mapStateToProps, {isAuthUser})(App))
+const AppContainer = compose(connect(mapStateToProps, {isAuthUser})(App))
 
 const PadApp = () => {
   return (

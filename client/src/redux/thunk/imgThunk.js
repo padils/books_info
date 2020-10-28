@@ -5,7 +5,6 @@ export const createImg = (img) => {
   return async (dispatch) => {
     dispatch(isLoading(true))
     let res2 = await ImgApi.createImg(img)
-    console.log(res2)
     dispatch(isLoading(false))
   }
 }
