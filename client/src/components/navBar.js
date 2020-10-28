@@ -10,7 +10,7 @@ const Navbar = ({logout, userId}) => {
   let history = useHistory()
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-light bg-light  ">
+    <nav className="navbar navbar-expand-sm navbar-light bg-light">
       <div className="container">
         <div className="navbar-brand">
           <a onClick={() => history.push('/')}>Books info</a>

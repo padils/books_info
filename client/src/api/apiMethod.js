@@ -18,10 +18,5 @@ const apiMethod = async (method = 'get', url, body = null) => {
   } catch (error) {
     throw new Error(error.response.data.message || 'Что-то пошло не так') //обработка ошибок
   }
-
-  // return instanse[metod](url).then(
-  //   (response) => response.data,
-  //   (error) => alert(error.response.data.message)
-  // )
 }
 export default apiMethod

@@ -3,6 +3,7 @@ import {useParams, useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {updateBook} from '../../redux/thunk/bookThunk'
+import NoPhoto from '../../components/noPhoto'
 
 const UpdateBook = ({books, updateBook}) => {
   let {id} = useParams()
@@ -11,10 +12,20 @@ const UpdateBook = ({books, updateBook}) => {
   let [bookState, editBookState] = useState(
     books.find((item) => item._id === id)
   )
+  let [img, editImg] = useState()
 
   return (
     <div className="container">
       <h1> Update book</h1>
+      <div className="">
+        <img src={bookState.imgUrl || NoPhoto()} className="" />
+      </div>
+      <input
+        type="file"
+        onChange={(e) => {
+          editImg(e.target.files[0])
+        }}
+      />
       <div>
         <span>name:</span>
         <textarea
@@ -43,7 +54,7 @@ const UpdateBook = ({books, updateBook}) => {
         <div className="col s6">
           <button
             onClick={() => {
-              updateBook(bookState)
+              updateBook(bookState, img)
               history.goBack()
             }}
           >

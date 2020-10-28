@@ -9,11 +9,9 @@ export const getBook = () => {
     if (data.success && data.data) {
       dispatch(setBooks(data.data))
       dispatch(isLoading(false))
-      console.log('запрос')
     } else {
       dispatch(setBooks(''))
       dispatch(isLoading(false))
-      console.log('empty')
     }
   }
 }
@@ -23,9 +21,8 @@ export const createBook = (book, img) => {
     dispatch(isLoading(true))
     let res = await BooksApi.createBook(book)
 
-    if (img && res && res.id) {
-      let res2 = await ImgApi.createImg(img, res.id)
-      console.log(res2)
+    if (img && res.success) {
+      await ImgApi.createImg(img, res.id)
       dispatch(getBook())
     }
     dispatch(isLoading(false))
@@ -39,10 +36,14 @@ export const deleteBook = (id) => {
     dispatch(isLoading(false))
   }
 }
-export const updateBook = (data) => {
+export const updateBook = (data, img) => {
   return async (dispatch) => {
     dispatch(isLoading(true))
-    await BooksApi.updateBook(data)
+    let res = await BooksApi.updateBook(data)
+    if (img && res.success) {
+      await ImgApi.createImg(img, res.id)
+      dispatch(getBook())
+    }
     dispatch(getBook())
     dispatch(isLoading(false))
   }

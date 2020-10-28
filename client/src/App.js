@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {BrowserRouter as Router} from 'react-router-dom'
 import {useRoute} from './routes'
 import Navbar from './components/navBar'
@@ -6,6 +6,7 @@ import {Provider, connect} from 'react-redux'
 import {compose} from 'redux'
 import store from './redux/redux-store'
 import {isAuthUser} from './redux/thunk/authThunk'
+import ToastMessage from './components/toasts'
 
 const App = ({isAuthUser, isAuth, userId}) => {
   const route = useRoute(isAuth)
@@ -13,12 +14,14 @@ const App = ({isAuthUser, isAuth, userId}) => {
   useEffect(() => {
     isAuthUser()
   }, [isAuthUser, userId])
-
+  // let i = false
+  // let [toast, editToast] = useState(false)
   return (
     <>
       <Router>
         <>
           <Navbar />
+          {/* <ToastMessage /> */}
 
           <div> {route}</div>
         </>

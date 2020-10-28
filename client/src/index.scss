@@ -1,27 +1,24 @@
- @import "~bootstrap/scss/bootstrap.scss";
+@import '~bootstrap/scss/bootstrap.scss';
 
-
-
-$allColor:#B32D45;
-.allColor{
+$allColor: #b32d45;
+.allColor {
   background-color: $allColor;
   color: $allColor;
 }
-input{
+input {
   @extend .form-control;
 }
 
-button{
-@extend .btn, .btn-outline-secondary,.m-1;
-
+button {
+  @extend .btn, .btn-outline-secondary, .m-1;
 }
 
-textarea{
+textarea {
   @extend input;
   height: 150px;
 }
 
-a{
+a {
   color: #fff;
   padding: 0 15px;
   cursor: pointer;

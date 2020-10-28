@@ -3,24 +3,31 @@ const Book = require('../models/book-model')
 
 createImg = async (req, res) => {
   await Book.findOne({_id: req.params.id}, (err, book) => {
-    book.imgPath = req.file.path
-    book.imgUrl = `http://localhost:3000/api/img/${book._id}`
-    book
-      .save()
-      .then(() => {
-        return res.status(200).json({
-          success: true,
-          id: book._id,
-          message: 'img create!',
+    try {
+      book.imgPath = req.file.path
+      book.imgUrl = `http://localhost:3000/api/img/${book._id}`
+      book
+        .save()
+        .then(() => {
+          return res.status(200).json({
+            success: true,
+            id: book._id,
+            message: 'img create!',
+          })
         })
-      })
-      .catch((error) => {
-        return res.status(404).json({
-          error,
-          message: 'img not create!',
+        .catch((error) => {
+          return res.status(404).json({
+            error,
+            message: 'img not create!',
+          })
         })
+    } catch (e) {
+      return res.status(404).json({
+        error: e,
+        message: 'что-то не так',
       })
-  }).catch((e) => console.log(e))
+    }
+  })
 }
 
 updateImg = async (req, res) => {}
