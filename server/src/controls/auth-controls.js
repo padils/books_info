@@ -78,7 +78,7 @@ const register = async (req, res) => {
   } catch (e) {
     user.login = false
     return res
-      .status(500)
+      .status(400)
       .json({message: 'Что-то пошло не так, попробуйте снова'})
   }
 }

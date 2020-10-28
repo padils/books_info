@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import TostMessage from '../helpFunc/errorMessage'
 
 const instanse = Axios.create({
   baseURL: ' http://localhost:3000/api/',
@@ -16,7 +17,7 @@ const apiMethod = async (method = 'get', url, body = null) => {
     let data = response.data
     return data
   } catch (error) {
-    throw new Error(error.response.data.message || 'Что-то пошло не так') //обработка ошибок
+    TostMessage(error.response.data.message || 'Что-то пошло не так')
   }
 }
 export default apiMethod
