@@ -20,8 +20,8 @@ export const createBook = (book, img) => {
     let res = await BooksApi.createBook(book)
     if (img && res.success) {
       await ImgApi.createImg(img, res.id)
-      dispatch(getBook())
     }
+    dispatch(getBook())
     dispatch(isLoading(false))
   }
 }
@@ -33,10 +33,11 @@ export const deleteBook = (id) => {
 }
 export const updateBook = (data, img) => {
   return async (dispatch) => {
+    dispatch(isLoading(true))
+
     let res = await BooksApi.updateBook(data)
     if (img && res.success) {
-      await ImgApi.createImg(img, res.id)
-      dispatch(getBook())
+      let res2 = await ImgApi.createImg(img, res.id)
     }
     dispatch(getBook())
   }

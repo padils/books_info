@@ -1,6 +1,7 @@
 const fs = require('fs')
 
 const Book = require('../models/book-model')
+const Img = require('../models/img-model')
 
 createBook = async (req, res) => {
   const body = req.body
@@ -10,7 +11,6 @@ createBook = async (req, res) => {
       error: 'You must provide a book',
     })
   }
-
   const book = new Book(body)
 
   if (!book.name) {
@@ -38,6 +38,13 @@ createBook = async (req, res) => {
 
 getBook = async (req, res) => {
   await Book.find({}, (err, books) => {
+    let data = books.map((i) => ({
+      name: i.name,
+      rating: i.rating,
+      sheet: i.sheet,
+      imgUrl: i.imgId ? `http://localhost:3000/api/img/${i.imgId}` : ``,
+      _id: i._id,
+    }))
     if (err) {
       return res.status(400).json({success: false, error: err})
     }
@@ -45,17 +52,12 @@ getBook = async (req, res) => {
       return res.status(400).json({success: false, message: 'no data'})
     }
 
-    return res.status(200).json({success: true, data: books})
+    return res.status(200).json({success: true, data})
   }).catch((e) => console.log('no data'))
 }
 
 deleteBook = async (req, res) => {
-  await Book.findOne({_id: req.params.id}, (err, res) => {
-    if (res.imgPath) {
-      fs.unlinkSync(res.imgPath)
-    }
-  })
-
+  let imgId
   await Book.findOneAndDelete({_id: req.params.id}, (err, books) => {
     if (err) {
       return res.status(400).json({success: false, error: err})
@@ -63,8 +65,14 @@ deleteBook = async (req, res) => {
     if (!books) {
       return res.status(400).json({success: false, error: 'Books not found'})
     }
-    return res.status(200).json({success: true, data: books})
+    imgId = books.imgId
   }).catch((e) => console.log(e))
+  if (imgId) {
+    await Img.findByIdAndDelete({_id: imgId}, (err, res) => {
+      fs.unlinkSync(res.imgPath)
+    })
+  }
+  res.status(200).json({success: true, message: `delete book`})
 }
 
 updateBook = async (req, res) => {

@@ -17,9 +17,11 @@ const bookReducer = (state = initialState, action) => {
         books: [...action.books],
       }
     case SET_IMG:
+      console.log(`img`)
+
       return {
         ...state,
-        img: [action.img],
+        books: state.books.map((i) => ({...i, imgUrl: ``})),
       }
     case IS_LOADING:
       return {
@@ -38,7 +40,7 @@ const bookReducer = (state = initialState, action) => {
 
 export const setFilter = (filterWord) => ({type: SET_FILTER, filterWord})
 export const setBooks = (books) => ({type: SET_BOOKS, books})
-export const setImg = (img) => ({type: SET_IMG, img})
+export const setImg = () => ({type: SET_IMG})
 export const isLoading = (isLoading) => ({type: IS_LOADING, isLoading})
 
 export default bookReducer

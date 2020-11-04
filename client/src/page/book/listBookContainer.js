@@ -4,7 +4,13 @@ import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {deleteBook, getBook} from '../../redux/thunk/bookThunk'
 
-const ListBookContainer = ({getBook, deleteBook, books, filterWord}) => {
+const ListBookContainer = ({
+  getBook,
+  deleteBook,
+  books,
+  filterWord,
+  updateBook,
+}) => {
   useEffect(() => {
     getBook()
   }, [getBook])

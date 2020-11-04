@@ -6,8 +6,7 @@ const Book = new Schema(
     name: {type: String},
     sheet: {type: String},
     rating: {type: String},
-    imgPath: {type: String},
-    imgUrl: {type: String},
+    imgId: {type: String},
   },
   {
     timestamps: false,

@@ -4,7 +4,6 @@ import NoPhoto from '../../components/noPhoto'
 
 const Book = ({src, name, rating, sheet, id, deleteBook}) => {
   const history = useHistory()
-
   return (
     <div className="row">
       <div className="col-6">

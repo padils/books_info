@@ -16,7 +16,7 @@ const ListBook = ({books, deleteBook}) => {
     </div>
   ))
   return (
-    <div className="container ">
+    <div className="container">
       <div className="col"> {list}</div>
     </div>
   )
