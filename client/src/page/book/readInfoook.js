@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useState} from 'react'
 
 const ReadInfoBook = ({
   editImg,
@@ -9,17 +10,21 @@ const ReadInfoBook = ({
   img,
   history,
   NoPhoto,
+  uploadImg,
 }) => {
+  let srcImg = bookState.imgUrl
+
   return (
     <div className="container">
       <h1> {title} book</h1>
       <div className="">
-        <img src={bookState.imgUrl || NoPhoto()} className="" />
+        <img src={srcImg || NoPhoto()} className="" />
       </div>
       <input
         type="file"
         onChange={(e) => {
           editImg(e.target.files[0])
+          uploadImg(e.target.files[0], bookState, editBookState)
         }}
       />
       <div>

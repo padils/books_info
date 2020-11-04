@@ -3,8 +3,9 @@ import {useParams, useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {updateBook} from '../../redux/thunk/bookThunk'
-import NoPhoto from '../../components/noPhoto'
+import NoPhoto from '../../helpFunc/noPhoto'
 import ReadInfoBook from './readInfoook'
+import uploadImgNow from '../../helpFunc/uploadImgNow'
 
 const UpdateBook = ({books, updateBook}) => {
   let {id} = useParams()
@@ -28,6 +29,7 @@ const UpdateBook = ({books, updateBook}) => {
       history={history}
       title={`Update`}
       NoPhoto={NoPhoto}
+      uploadImg={uploadImgNow}
     />
   )
 }

@@ -3,8 +3,9 @@ import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {createBook} from '../../redux/thunk/bookThunk'
-import NoPhoto from '../../components/noPhoto'
+import NoPhoto from '../../helpFunc/noPhoto'
 import ReadInfoBook from './readInfoook'
+import uploadImgNow from '../../helpFunc/uploadImgNow'
 
 let CreateBookInputs = ({createBook}) => {
   let [bookState, editBookState] = useState({
@@ -28,6 +29,7 @@ let CreateBookInputs = ({createBook}) => {
       history={history}
       title={`Create`}
       NoPhoto={NoPhoto}
+      uploadImg={uploadImgNow}
     />
   )
 }

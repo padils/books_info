@@ -1,6 +1,6 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
-import NoPhoto from '../../components/noPhoto'
+import NoPhoto from '../../helpFunc/noPhoto'
 
 const Book = ({src, name, rating, sheet, id, deleteBook}) => {
   const history = useHistory()
